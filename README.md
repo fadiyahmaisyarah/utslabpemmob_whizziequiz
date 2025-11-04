@@ -1,16 +1,47 @@
-# utslab_kuis
+# Whizzie Quiz App 
 
-A new Flutter project.
+## Identitas
+- **Nama**: Fadiyah Maisyarah
+- **NIM**: 231401101
+- **Lab**: PM 4
 
-## Getting Started
+## Deskripsi Aplikasi
+Whizzie adalah aplikasi kuis pilihan ganda interaktif yang memungkinkan pengguna untuk:
+- Memasukkan nama sebelum memulai kuis
+- Menjawab 5 pertanyaan pilihan ganda
+- Melihat skor akhir dengan persentase kebenaran
+- UI modern dengan gradient pink-purple dan animasi interaktif
 
-This project is a starting point for a Flutter application.
+## Fitur Utama
+- Input validasi nama pengguna
+- Progress bar untuk tracking kemajuan
+- Visual feedback (hijau untuk benar, merah untuk salah)
+- Responsive design untuk berbagai ukuran layar
+- State management yang robust
+- Navigasi smooth antar halaman
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
+- Flutter SDK
+- Dart Language
+- Custom Fonts: Afacad, ADLaM Display
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Video Demo
+[https://youtube.com/shorts/R7bwbz2rneM?feature=share]
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Mockup/Prototype
+[https://www.figma.com/design/Kx0mAPjSHZvye3domstQ0e/whizzie?node-id=0-1&t=5nBkHMS9VThvCdKu-1]
+
+## Credits & Assets
+### Fonts
+- **Afacad** - Google Fonts(https://fonts.google.com/specimen/Afacad)
+- **ADLaM Display** - Google Fonts(https://fonts.google.com/specimen/ADLaM+Display)
+
+### Images
+- Logo: Pinterest [https://pin.it/6FKRfISCY]
+- Donut image: Pinterest [https://pin.it/3hey3jpfP]
+- Girl image: Pinterest [https://pin.it/kIB0GUOwS]
+
+
+
+
+
