@@ -57,7 +57,10 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  fonts:
+assets:
+  - assets/images/
+
+fonts:
     - family: Actor
       fonts:
         - asset: assets/fonts/Actor-Regular.ttf
