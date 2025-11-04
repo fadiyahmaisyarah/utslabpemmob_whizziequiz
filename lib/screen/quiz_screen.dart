@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../data/quiz_data.dart';
 import 'result_screen.dart';
+import '../widgets/option_button.dart';
+
+
 
 class QuizScreen extends StatefulWidget {
   final String userName;
@@ -174,11 +177,18 @@ class _QuizScreenState extends State<QuizScreen> {
 
                         ...List.generate(
                           currentQuestion.options.length,
-                              (index) => _buildOptionButton(
+                              (index) => OptionButton(
                             label: String.fromCharCode(65 + index),
                             text: currentQuestion.options[index],
                             index: index,
                             correctIndex: currentQuestion.correctAnswerIndex,
+                            selectedOptionIndex: selectedOptionIndex,
+                            showResult: showResult,
+                            onTap: (idx) {
+                              setState(() {
+                                selectedOptionIndex = idx;
+                              });
+                            },
                             screenWidth: screenWidth,
                           ),
                         ),

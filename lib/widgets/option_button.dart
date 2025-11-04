@@ -3,23 +3,32 @@ import 'package:flutter/material.dart';
 class OptionButton extends StatelessWidget {
   final String label;
   final String text;
-  final bool isSelected;
-  final VoidCallback onTap;
+  final int index;
+  final int correctIndex;
+  final int? selectedOptionIndex;
+  final bool showResult;
+  final Function(int) onTap;
+  final double screenWidth;
 
   const OptionButton({
     Key? key,
     required this.label,
     required this.text,
-    required this.isSelected,
+    required this.index,
+    required this.correctIndex,
+    required this.selectedOptionIndex,
+    required this.showResult,
     required this.onTap,
+    required this.screenWidth,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
+    bool isSelected = selectedOptionIndex == index;
+    bool isCorrect = index == correctIndex;
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => onTap(index),
+
       child: Container(
         width: screenWidth * 0.85,
         padding: EdgeInsets.symmetric(
