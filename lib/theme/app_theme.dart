@@ -12,34 +12,43 @@ class AppColors {
   static const Color veryLightPink = Color(0xFFF7DBEE);
   static const Color white = Color(0xFFFFFFFF);
 
-  // Warna dari gradient (untuk fallback)
-  static const Color gradientStart = Color(0xFFE8078B);  // Pink
-  static const Color gradientMid1 = Color(0xFFD50C96);
-  static const Color gradientMid2 = Color(0xFFC310A1);
-  static const Color gradientMid3 = Color(0xFFA21CB3);
-  static const Color gradientEnd = Color(0xFFD70C95);    // Ungu-pink
+  // Warna gradient sesuai desain (Pink ke Ungu)
+  static const Color gradientTop = Color(0xFFE91E93);      // Pink terang
+  static const Color gradientMiddle = Color(0xFFB721B7);   // Magenta-Ungu
+  static const Color gradientBottom = Color(0xFF8E24AA);   // Ungu
 
-  // Gradient untuk Background
+  // Gradient untuk Background - Horizontal (Kiri ke Kanan)
   static const LinearGradient primaryGradient = LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
     colors: [
-      Color(0xFFE8078B),
-      Color(0xFFD50C96),
-      Color(0xFFC310A1),
-      Color(0xFFA21CB3),
-      Color(0xFFD70C95),
+      Color(0xFFE91E93),  // Pink cerah di kiri
+      Color(0xFFD61FA8),  // Pink-magenta
+      Color(0xFFB721B7),  // Magenta-ungu tengah
+      Color(0xFF9D23C5),  // Ungu-magenta
+      Color(0xFF8E24AA),  // Ungu di kanan
     ],
     stops: [0.0, 0.25, 0.5, 0.75, 1.0],
   );
 
+  // Gradient alternatif untuk variasi
+  static const LinearGradient buttonGradient = LinearGradient(
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    colors: [
+      Color(0xFFE91E93),
+      Color(0xFFB721B7),
+    ],
+  );
+
   // Warna untuk UI elements
-  static const Color cardBackground = Color(0xFFF7DBEE);
+  static const Color cardBackground = Color(0xFFFDF5FB);
   static const Color correctGreen = Color(0xFF0DC842);
   static const Color wrongRed = Color(0xFFFF2C52);
   static const Color wrongRedLight = Color(0xFFFF5C6C);
-  static const Color textPrimary = Color(0xFFEE60A1);
+  static const Color textPrimary = Color(0xFFE91E93);
   static const Color textGrey = Color(0xFFAAA2A7);
+  static const Color textLight = Color(0xFFF5D9ED);
 }
 
 class AppTheme {
@@ -47,11 +56,11 @@ class AppTheme {
   static const String primaryFont = 'Afacad';
   static const String displayFont = 'ADLaMDisplay';
 
-  // Light Theme
+  // Light Theme dengan Gradient Background
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     primaryColor: AppColors.pink1,
-    scaffoldBackgroundColor: AppColors.gradientStart,
+    scaffoldBackgroundColor: Colors.transparent, // Transparent untuk gradient
     fontFamily: primaryFont,
 
     appBarTheme: const AppBarTheme(
@@ -72,6 +81,7 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         color: AppColors.white,
         fontFamily: displayFont,
+        letterSpacing: 1.2,
       ),
       headlineMedium: TextStyle(
         fontSize: 24,
@@ -85,6 +95,13 @@ class AppTheme {
         color: Colors.black87,
         fontFamily: primaryFont,
       ),
+      titleMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: AppColors.white,
+        fontFamily: primaryFont,
+        letterSpacing: 2.0,
+      ),
       bodyLarge: TextStyle(
         fontSize: 16,
         color: Colors.black87,
@@ -97,7 +114,7 @@ class AppTheme {
       ),
       labelMedium: TextStyle(
         fontSize: 14,
-        color: AppColors.textGrey,
+        color: AppColors.textLight,
         fontFamily: primaryFont,
       ),
     ),
@@ -115,13 +132,31 @@ class AppTheme {
           fontSize: 16,
           fontWeight: FontWeight.bold,
           fontFamily: primaryFont,
+          letterSpacing: 1.5,
+        ),
+      ),
+    ),
+
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.white,
+        side: const BorderSide(color: AppColors.white, width: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          fontFamily: primaryFont,
+          letterSpacing: 1.5,
         ),
       ),
     ),
 
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: AppColors.white,
+      fillColor: AppColors.white.withOpacity(0.9),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
         borderSide: BorderSide.none,
@@ -132,11 +167,11 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
-        borderSide: const BorderSide(color: AppColors.pink1, width: 2),
+        borderSide: const BorderSide(color: AppColors.white, width: 2),
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      hintStyle: const TextStyle(
-        color: AppColors.textGrey,
+      hintStyle: TextStyle(
+        color: AppColors.textGrey.withOpacity(0.6),
         fontSize: 14,
         fontFamily: primaryFont,
       ),
@@ -156,11 +191,11 @@ class AppTheme {
     ),
   );
 
-  // Dark Theme
+  // Dark Theme dengan Gradient Background
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     primaryColor: AppColors.pink1,
-    scaffoldBackgroundColor: const Color(0xFF1A1A1A),
+    scaffoldBackgroundColor: Colors.transparent,
     fontFamily: primaryFont,
 
     appBarTheme: const AppBarTheme(
@@ -181,6 +216,7 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         color: AppColors.white,
         fontFamily: displayFont,
+        letterSpacing: 1.2,
       ),
       headlineMedium: TextStyle(
         fontSize: 24,
@@ -194,6 +230,13 @@ class AppTheme {
         color: AppColors.white,
         fontFamily: primaryFont,
       ),
+      titleMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: AppColors.white,
+        fontFamily: primaryFont,
+        letterSpacing: 2.0,
+      ),
       bodyLarge: TextStyle(
         fontSize: 16,
         color: AppColors.white,
@@ -206,15 +249,15 @@ class AppTheme {
       ),
       labelMedium: TextStyle(
         fontSize: 14,
-        color: AppColors.textGrey,
+        color: AppColors.textLight,
         fontFamily: primaryFont,
       ),
     ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.pink1,
-        foregroundColor: AppColors.white,
+        backgroundColor: AppColors.white,
+        foregroundColor: AppColors.textPrimary,
         elevation: 0,
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         shape: RoundedRectangleBorder(
@@ -224,13 +267,31 @@ class AppTheme {
           fontSize: 16,
           fontWeight: FontWeight.bold,
           fontFamily: primaryFont,
+          letterSpacing: 1.5,
+        ),
+      ),
+    ),
+
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.white,
+        side: const BorderSide(color: AppColors.white, width: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          fontFamily: primaryFont,
+          letterSpacing: 1.5,
         ),
       ),
     ),
 
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: const Color(0xFF2A2A2A),
+      fillColor: AppColors.white.withOpacity(0.9),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
         borderSide: BorderSide.none,
@@ -241,11 +302,11 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(30),
-        borderSide: const BorderSide(color: AppColors.pink1, width: 2),
+        borderSide: const BorderSide(color: AppColors.white, width: 2),
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      hintStyle: const TextStyle(
-        color: AppColors.textGrey,
+      hintStyle: TextStyle(
+        color: AppColors.textGrey.withOpacity(0.6),
         fontSize: 14,
         fontFamily: primaryFont,
       ),
@@ -260,8 +321,29 @@ class AppTheme {
     ),
 
     progressIndicatorTheme: const ProgressIndicatorThemeData(
-      color: AppColors.pink1,
+      color: AppColors.white,
       linearTrackColor: Color(0x33FFFFFF),
     ),
   );
+}
+
+class GradientBackground extends StatelessWidget {
+  final Widget child;
+  final LinearGradient? gradient;
+
+  const GradientBackground({
+    Key? key,
+    required this.child,
+    this.gradient,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: gradient ?? AppColors.primaryGradient,
+      ),
+      child: child,
+    );
+  }
 }

@@ -19,122 +19,155 @@ class ResultScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final percentage = (score / totalQuestions * 100).round();
 
-    return Scaffold(
-      backgroundColor: const Color(0xFFFF1493),
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Kuis Selesai!',
-                style: TextStyle(
-                  fontSize: screenWidth * 0.08,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              SizedBox(height: screenHeight * 0.05),
-
-              // Score Card
-              Container(
-                width: screenWidth * 0.8,
-                padding: EdgeInsets.all(screenWidth * 0.08),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      'Skor Anda',
-                      style: TextStyle(
-                        fontSize: screenWidth * 0.05,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                    SizedBox(height: screenHeight * 0.02),
-                    Text(
-                      '$score/$totalQuestions',
-                      style: TextStyle(
-                        fontSize: screenWidth * 0.15,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFFFF1493),
-                      ),
-                    ),
-                    SizedBox(height: screenHeight * 0.01),
-                    Text(
-                      '$percentage% Benar',
-                      style: TextStyle(
-                        fontSize: screenWidth * 0.045,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              SizedBox(height: screenHeight * 0.05),
-
-              // Buttons
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
-                        (route) => false,
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.1,
-                    vertical: screenWidth * 0.04,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Text(
-                  'MAIN LAGI',
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFFE51CAD),
+            Color(0xFFDA17AE),
+            Color(0xFFCF12AF),
+            Color(0xFFC40DB0),
+            Color(0xFFB908B1),
+          ],
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Kuis Selesai',
                   style: TextStyle(
-                    fontSize: screenWidth * 0.04,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFF1493),
-                  ),
-                ),
-              ),
-
-              SizedBox(height: screenHeight * 0.02),
-
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomeScreen()),
-                        (route) => false,
-                  );
-                },
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: Colors.white, width: 2),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.08,
-                    vertical: screenWidth * 0.04,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Text(
-                  'KEMBALI KE BERANDA',
-                  style: TextStyle(
-                    fontSize: screenWidth * 0.035,
+                    fontSize: screenWidth * 0.065,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
+                    fontFamily: 'Afacad',
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: screenHeight * 0.04),
+
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.06,
+                    vertical: screenHeight * 0.04,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF5D9EE),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Skor Anda',
+                        style: TextStyle(
+                          fontSize: screenWidth * 0.045,
+                          color: const Color(0xFFE91E93),
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Afacad',
+                        ),
+                      ),
+                      SizedBox(height: screenHeight * 0.015),
+                      Text(
+                        '$score/$totalQuestions',
+                        style: TextStyle(
+                          fontSize: screenWidth * 0.13,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFFE91E93),
+                          fontFamily: 'Afacad',
+                        ),
+                      ),
+                      SizedBox(height: screenHeight * 0.005),
+                      Text(
+                        '$percentage% Benar',
+                        style: TextStyle(
+                          fontSize: screenWidth * 0.04,
+                          color: const Color(0xFFE91E93),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Afacad',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                SizedBox(height: screenHeight * 0.04),
+
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => const HomeScreen()),
+                            (route) => false,
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white.withOpacity(0.9),
+                      padding: EdgeInsets.symmetric(
+                        vertical: screenWidth * 0.038,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      elevation: 0,
+                    ),
+                    child: Text(
+                      'MAIN LAGI',
+                      style: TextStyle(
+                        fontSize: screenWidth * 0.038,
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xFFE91E93),
+                        fontFamily: 'Afacad',
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: screenHeight * 0.015),
+
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => const HomeScreen()),
+                            (route) => false,
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white.withOpacity(0.3),
+                      padding: EdgeInsets.symmetric(
+                        vertical: screenWidth * 0.038,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      elevation: 0,
+                    ),
+                    child: Text(
+                      'KEMBALI KE BERANDA',
+                      style: TextStyle(
+                        fontSize: screenWidth * 0.035,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontFamily: 'Afacad',
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
