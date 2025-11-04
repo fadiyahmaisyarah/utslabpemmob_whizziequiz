@@ -22,17 +22,25 @@ class _QuizScreenState extends State<QuizScreen> {
 
   void _nextQuestion() {
     if (selectedOptionIndex != null) {
-      setState(() {
-        userAnswers[currentQuestionIndex] = selectedOptionIndex;
+      if (!showResult) {
+        // Tahap 1: Tampilkan hasil (benar/salah)
+        setState(() {
+          showResult = true;
+        });
+      } else {
+        // Tahap 2: Pindah ke soal berikutnya
+        setState(() {
+          userAnswers[currentQuestionIndex] = selectedOptionIndex;
 
-        if (currentQuestionIndex < quizQuestions.length - 1) {
-          currentQuestionIndex++;
-          selectedOptionIndex = userAnswers[currentQuestionIndex];
-          showResult = false;
-        } else {
-          _goToResult();
-        }
-      });
+          if (currentQuestionIndex < quizQuestions.length - 1) {
+            currentQuestionIndex++;
+            selectedOptionIndex = userAnswers[currentQuestionIndex];
+            showResult = false;
+          } else {
+            _goToResult();
+          }
+        });
+      }
     }
   }
 
@@ -236,105 +244,4 @@ class _QuizScreenState extends State<QuizScreen> {
       ),
     );
   }
-
-  Widget _buildOptionButton({
-    required String label,
-    required String text,
-    required int index,
-    required int correctIndex,
-    required double screenWidth,
-  }) {
-    bool isSelected = selectedOptionIndex == index;
-    bool isCorrect = index == correctIndex;
-
-    Color backgroundColor;
-    Color borderColor;
-    Color textColor;
-
-    if (showResult) {
-
-      if (isCorrect) {
-        backgroundColor = const Color(0xFFB8F5CD); // Hijau muda
-        borderColor = const Color(0xFF4CAF50);
-        textColor = const Color(0xFF2E7D32);
-      } else if (isSelected) {
-        backgroundColor = const Color(0xFFFFCDD2); // Merah muda
-        borderColor = const Color(0xFFF44336);
-        textColor = const Color(0xFFC62828);
-      } else {
-        backgroundColor = Colors.white;
-        borderColor = const Color(0xFFE91E93).withOpacity(0.2);
-        textColor = const Color(0xFFE91E93);
-      }
-    } else {
-
-      if (isSelected) {
-        backgroundColor = const Color(0xFFB8F5CD);
-        borderColor = const Color(0xFF4CAF50);
-        textColor = const Color(0xFF2E7D32);
-      } else {
-        backgroundColor = Colors.white;
-        borderColor = const Color(0xFFE91E93).withOpacity(0.2);
-        textColor = const Color(0xFFE91E93);
-      }
-    }
-
-    return Padding(
-      padding: EdgeInsets.only(bottom: screenWidth * 0.03),
-      child: InkWell(
-        onTap: showResult ? null : () {
-          setState(() {
-            selectedOptionIndex = index;
-          });
-        },
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(screenWidth * 0.04),
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            border: Border.all(color: borderColor, width: 2),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Row(
-            children: [
-
-              Container(
-                width: screenWidth * 0.08,
-                height: screenWidth * 0.08,
-                decoration: BoxDecoration(
-                  color: isSelected ? borderColor.withOpacity(0.2) : Colors.transparent,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Text(
-                    '$label.',
-                    style: TextStyle(
-                      fontSize: screenWidth * 0.04,
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
-                      fontFamily: 'Afacad',
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: screenWidth * 0.03),
-
-              Expanded(
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    fontSize: screenWidth * 0.038,
-                    color: textColor,
-                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                    fontFamily: 'Afacad',
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+ }
