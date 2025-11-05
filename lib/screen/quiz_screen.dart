@@ -3,8 +3,6 @@ import '../data/quiz_data.dart';
 import 'result_screen.dart';
 import '../widgets/option_button.dart';
 
-
-
 class QuizScreen extends StatefulWidget {
   final String userName;
 
@@ -23,12 +21,12 @@ class _QuizScreenState extends State<QuizScreen> {
   void _nextQuestion() {
     if (selectedOptionIndex != null) {
       if (!showResult) {
-        // Tahap 1: Tampilkan hasil (benar/salah)
+
         setState(() {
           showResult = true;
         });
       } else {
-        // Tahap 2: Pindah ke soal berikutnya
+
         setState(() {
           userAnswers[currentQuestionIndex] = selectedOptionIndex;
 
@@ -89,12 +87,10 @@ class _QuizScreenState extends State<QuizScreen> {
         body: SafeArea(
           child: Column(
             children: [
-
               Padding(
                 padding: EdgeInsets.all(screenWidth * 0.05),
                 child: Row(
                   children: [
-
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: Container(
@@ -112,7 +108,6 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                     ),
                     SizedBox(width: screenWidth * 0.03),
-
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,7 +153,6 @@ class _QuizScreenState extends State<QuizScreen> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-
                         if (currentQuestion.imageUrl != null) ...[
                           ClipRRect(
                             borderRadius: BorderRadius.circular(15),
@@ -221,9 +215,11 @@ class _QuizScreenState extends State<QuizScreen> {
                               elevation: 0,
                             ),
                             child: Text(
-                              currentQuestionIndex == quizQuestions.length - 1
+                              showResult
+                                  ? (currentQuestionIndex == quizQuestions.length - 1
                                   ? 'FINISH'
-                                  : 'NEXT QUESTION',
+                                  : 'NEXT QUESTION')
+                                  : 'CHECK ANSWER',
                               style: TextStyle(
                                 fontSize: screenWidth * 0.04,
                                 fontWeight: FontWeight.bold,
@@ -244,4 +240,4 @@ class _QuizScreenState extends State<QuizScreen> {
       ),
     );
   }
- }
+}

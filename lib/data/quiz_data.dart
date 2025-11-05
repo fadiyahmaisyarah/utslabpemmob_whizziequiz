@@ -14,7 +14,7 @@ final List<Question> quizQuestions = [
   Question(
     question: 'Bentuk apakah yang terlihat pada gambar di atas?',
     options: ['Persegi', 'Segitiga', 'Oval', 'Lingkaran'],
-    correctAnswerIndex: 2,
+    correctAnswerIndex: 3,
     imageUrl: 'assets/images/donut.png',
   ),
   Question(

@@ -30,38 +30,48 @@ class OptionButton extends StatelessWidget {
     Color backgroundColor;
     Color borderColor;
     Color textColor;
+    Color labelCircleColor = Colors.transparent;
+
+    backgroundColor = Colors.white;
+    borderColor = const Color(0xFFE91E93).withOpacity(0.2);
+    textColor = const Color(0xFFE91E93);
+
 
     if (showResult) {
 
       if (isCorrect) {
+
         backgroundColor = const Color(0xFFB8F5CD);
         borderColor = const Color(0xFF4CAF50);
         textColor = const Color(0xFF2E7D32);
-      } else if (isSelected) {
+        labelCircleColor = borderColor.withOpacity(0.2);
+      }
+
+      else if (isSelected && !isCorrect) {
+
         backgroundColor = const Color(0xFFFFCDD2);
         borderColor = const Color(0xFFF44336);
         textColor = const Color(0xFFC62828);
-      } else {
-        backgroundColor = Colors.white;
-        borderColor = const Color(0xFFE91E93).withOpacity(0.2);
-        textColor = const Color(0xFFE91E93);
+        labelCircleColor = borderColor.withOpacity(0.2);
       }
-    } else {
+
+        } else {
 
       if (isSelected) {
-        backgroundColor = const Color(0xFFB8F5CD);
-        borderColor = const Color(0xFF4CAF50);
-        textColor = const Color(0xFF2E7D32);
-      } else {
-        backgroundColor = Colors.white;
-        borderColor = const Color(0xFFE91E93).withOpacity(0.2);
+
+        backgroundColor = const Color(0xFFF5D9EE);
+        borderColor = const Color(0xFFE91E93);
         textColor = const Color(0xFFE91E93);
+        labelCircleColor = borderColor.withOpacity(0.2);
       }
+
     }
+
 
     return Padding(
       padding: EdgeInsets.only(bottom: screenWidth * 0.03),
       child: InkWell(
+
         onTap: showResult ? null : () => onTap(index),
         borderRadius: BorderRadius.circular(12),
         child: Container(
@@ -78,7 +88,7 @@ class OptionButton extends StatelessWidget {
                 width: screenWidth * 0.08,
                 height: screenWidth * 0.08,
                 decoration: BoxDecoration(
-                  color: isSelected ? borderColor.withOpacity(0.2) : Colors.transparent,
+                  color: labelCircleColor,
                   shape: BoxShape.circle,
                 ),
                 child: Center(
@@ -100,7 +110,9 @@ class OptionButton extends StatelessWidget {
                   style: TextStyle(
                     fontSize: screenWidth * 0.038,
                     color: textColor,
-                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                    fontWeight: (isSelected || (showResult && isCorrect))
+                        ? FontWeight.w600
+                        : FontWeight.w500,
                     fontFamily: 'Afacad',
                   ),
                 ),

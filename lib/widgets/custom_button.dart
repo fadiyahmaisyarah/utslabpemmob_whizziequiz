@@ -10,6 +10,7 @@ class CustomButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.isEnabled = true,
+
   }) : super(key: key);
 
   @override
